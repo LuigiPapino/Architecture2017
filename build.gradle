@@ -12,7 +12,7 @@ buildscript {
     //APP VERSION
     default_version_name = "0.1-dev"
     default_version_code = 1
-    //KOLTIN
+    //KOTLIN
     kotlin_version = '1.1.0'
 
     //DEPENDENCIES
