@@ -1,14 +1,23 @@
+def retrieveVersionName() {
+  return project.hasProperty('version_name') ? version_name : default_version_name
+}
+
+def retrieveVersionCode() {
+  return project.hasProperty('version_code') ? version_code.toInteger() : default_version_code
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.0"
+  compileSdkVersion compile_sdk_version
+  buildToolsVersion build_tool_version
   defaultConfig {
-    applicationId "com.spranga.architecture2017"
-    minSdkVersion 19
-    targetSdkVersion 25
-    versionCode 1
-    versionName "1.0"
+    applicationId application_id
+    minSdkVersion min_sdk_version
+    targetSdkVersion target_sdk_version
+    versionCode retrieveVersionCode()
+    versionName retrieveVersionName()
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
@@ -21,15 +30,31 @@ android {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+  //KOTLIN
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+  //SUPPORT
+  compile "com.android.support:appcompat-v7:$android_support_version"
+  compile "com.android.support:support-v4:$android_support_version"
+  compile "com.android.support:recyclerview-v7:$android_support_version"
+  compile "com.android.support:design:$android_support_version"
+
+  //DAGGER
+  compile "com.google.dagger:dagger:$dagger_version"
+  compile "com.google.dagger:dagger-android-support:$dagger_version"
+  annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+
+  //--------UNIT TEST-------
+  //JUNIT
+  testCompile "junit:junit:$junit_version"
+
+  //--------ANDROID TEST-------
+  //ESPRESSO
+  androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.android.support:appcompat-v7:25.1.1'
-  compile 'com.android.support:support-v4:25.1.1'
-  compile 'com.android.support:recyclerview-v7:25.1.1'
-  compile 'com.android.support:design:25.1.1'
-  testCompile 'junit:junit:4.12'
-
-  compile 'com.google.dagger:dagger:2.9'
-  annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+}
+repositories {
+  mavenCentral()
 }
