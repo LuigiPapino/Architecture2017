@@ -7,6 +7,7 @@ import dagger.Component;
  * Created by nietzsche on 03/03/17.
  */
 
-@Component(modules = MainActivityModule.class) public interface SprangaAppComponent {
+@Component(modules = { ActivityModule.class, DevToolModule.class })
+public interface SprangaAppComponent {
   void inject(SprangaApplication sprangaApplication);
 }

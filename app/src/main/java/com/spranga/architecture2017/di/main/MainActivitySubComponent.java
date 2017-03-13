@@ -1,4 +1,4 @@
-package com.spranga.architecture2017.di;
+package com.spranga.architecture2017.di.main;
 
 import com.spranga.architecture2017.ItemListActivity;
 import dagger.Subcomponent;

@@ -6,8 +6,25 @@ def retrieveVersionCode() {
   return project.hasProperty('version_code') ? version_code.toInteger() : default_version_code
 }
 
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.frogermcs.androiddevmetrics:androiddevmetrics-plugin:0.4"
+  }
+}
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.frogermcs.androiddevmetrics'
+apply from: '../config.gradle'
+
 
 android {
   signingConfigs {
@@ -47,6 +64,34 @@ android {
       applicationIdSuffix ".debug"
     }
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  retrolambda {
+    javaVersion JavaVersion.VERSION_1_6
+    jvmArgs '-noverify'
+    defaultMethods false
+    incremental true
+  }
+
+  dexOptions {
+    maxProcessCount 3
+    javaMaxHeapSize "4g"
+  }
+}
+
+configurations.all {
+  resolutionStrategy {
+    force "com.android.support:support-annotations:$android_support_version"
+    force "com.android.support:appcompat-v7:$android_support_version"
+    force "com.android.support:appcompat-v13:$android_support_version"
+    force "com.android.support:support-v13:$android_support_version"
+    force "com.android.support:gridlayout-v7:$android_support_version"
+    force "com.android.support:animated-vector-drawable:$android_support_version"
+  }
 }
 
 dependencies {
@@ -58,19 +103,69 @@ dependencies {
   compile "com.android.support:support-v4:$android_support_version"
   compile "com.android.support:recyclerview-v7:$android_support_version"
   compile "com.android.support:design:$android_support_version"
+  compile "com.android.support.constraint:constraint-layout:$android_constraint_layout"
+  //Play Services
+  compile "com.google.android.gms:play-services-maps:$play_services_version"
+  //Firebase
+  compile 'com.google.firebase:firebase-database:10.0.1'
+
   //DAGGER
   compile "com.google.dagger:dagger:$dagger_version"
   compile "com.google.dagger:dagger-android-support:$dagger_version"
   annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+  //RXJAVA
+  compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
+  compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+  //RETROFIT
+  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+  compile "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+  compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+  //LOGANSQUARE
+  annotationProcessor "com.bluelinelabs:logansquare-compiler:$logan_square_version"
+  compile "com.bluelinelabs:logansquare:$logan_square_version"
+  compile "com.github.aurae.retrofit2:converter-logansquare:$logansquare_converter_version"
+
+  //STREAM API
+  compile "com.annimon:stream:$streamapi_version"
+
+  //CALLIGRAPHY
+  compile "uk.co.chrisjenx:calligraphy:$calligraphy_version"
+
+  //JODA TIME
+  compile "net.danlew:android.joda:$jodatime_version"
+
+  //ButterKnife
+  compile "com.jakewharton:butterknife:$butterknife_version"
+  annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+
+  //Fresco
+
+  //--------DEV TOOLS-------
+  compile "com.facebook.stetho:stetho:$stetho_version"
+  compile "com.facebook.stetho:stetho-okhttp3:$stetho_version"
+
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
+  testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
+
+
   //--------UNIT TEST-------
   //JUNIT
   testCompile "junit:junit:$junit_version"
+  //MOCKITO
+  testCompile "org.mockito:mockito-core:$mockito_version"
+  //AssertJ
+  testCompile "com.squareup.assertj:assertj-android:$assertj_version"
+
   //--------ANDROID TEST-------
   //ESPRESSO
   androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
 }
-repositories {
-  mavenCentral()
-}
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,43 +1,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-
   ext {
-    compile_sdk_version = 25
-    build_tool_version = "25.0.2"
-    application_id = "com.spranga.architecture2017"
-    min_sdk_version = 19
-    target_sdk_version = 25
-
-    //APP VERSION
-    default_version_name = "0.1-dev"
-    default_version_code = 1
-    //KOTLIN
     kotlin_version = '1.1.0'
-
-    //DEPENDENCIES
-    android_support_version = "25.2.0"
-    dagger_version = '2.10-rc2'
-
-
-    //TEST DEPENDENCIES
-    espresso_version = "2.2.2"
-    junit_version = "4.12"
+    retrolambda_version = "3.6.0"
   }
 
   repositories {
     jcenter()
   }
+
   dependencies {
     classpath 'com.android.tools.build:gradle:2.3.0'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
+    classpath 'com.google.gms:google-services:3.0.0'
   }
 }
 
+plugins {
+  id "me.tatarka.retrolambda" version "3.6.0"
+}
 allprojects {
+  apply plugin: "me.tatarka.retrolambda"
   repositories {
     jcenter()
   }
