@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346873265819:android:509fe7821faa1bfa",
+        "android_client_info": {
+          "package_name": "com.spranga.architecture2017"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346873265819-pfr89usf4p2mlgs7d7dgshp93fl7kdei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spranga.architecture2017",
+            "certificate_hash": "6509fccdba31d1bb2d8aeea08b00a38fef3bb23b"
+          }
+        },
+        {
+          "client_id": "346873265819-u7an6tub11gvpeoe1n5igfjtocre116a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAplnzvQo9-i3Qb8beGtE4_kzGNOFUxO-g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346873265819-u7an6tub11gvpeoe1n5igfjtocre116a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

@@ -27,6 +27,7 @@ ext {
   jodatime_version = "2.9.4.1"
   butterknife_version = '8.5.1'
   AA_version = "4.3.0"
+  firebase_version = "10.2.1"
 
   //TEST DEPENDENCIES
   espresso_version = "2.2.2"

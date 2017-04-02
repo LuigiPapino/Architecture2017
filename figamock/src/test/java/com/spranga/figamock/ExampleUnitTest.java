@@ -1,4 +1,4 @@
-package com.spranga.firstmodule;
+package com.spranga.figamock;
 
 import org.junit.Test;
 

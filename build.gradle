@@ -13,6 +13,7 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:2.4.0-alpha3'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     classpath 'com.google.gms:google-services:3.0.0'
 
 
@@ -22,6 +23,7 @@ buildscript {
 plugins {
   id "me.tatarka.retrolambda" version "3.6.0"
 }
+
 allprojects {
   apply plugin: "me.tatarka.retrolambda"
   repositories {

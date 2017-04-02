@@ -22,7 +22,9 @@ repositories {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.frogermcs.androiddevmetrics'
+apply plugin: "kotlin-kapt"
 apply from: '../config.gradle'
 
 
@@ -51,11 +53,11 @@ android {
     versionName retrieveVersionName()
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     //Needed for AndroidAnnoations https://github.com/androidannotations/androidannotations/issues/1964#issuecomment-285481020
-    javaCompileOptions {
+    /*javaCompileOptions {
       annotationProcessorOptions {
         arguments = ['resourcePackageName': android.defaultConfig.applicationId]
       }
-    }
+    }*/
   }
   buildTypes {
     release {
@@ -67,7 +69,7 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       signingConfig signingConfigs.develop
-      applicationIdSuffix ".debug"
+      //applicationIdSuffix ".debug"
     }
   }
 
@@ -87,7 +89,10 @@ android {
     maxProcessCount 3
     javaMaxHeapSize "4g"
   }
+
 }
+
+
 
 configurations.all {
   resolutionStrategy {
@@ -102,6 +107,8 @@ configurations.all {
 
 dependencies {
   compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile project(':figamock')
+
   //KOTLIN
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
   //SUPPORT
@@ -112,14 +119,16 @@ dependencies {
   compile "com.android.support.constraint:constraint-layout:$android_constraint_layout"
 
   //Firebase
-  //compile 'com.google.firebase:firebase-database:10.0.1'
-  compile 'com.google.firebase:firebase-core:10.2.1'
-
+  compile "com.google.firebase:firebase-core:$firebase_version"
 
   //DAGGER
   compile "com.google.dagger:dagger:$dagger_version"
   compile "com.google.dagger:dagger-android-support:$dagger_version"
-  annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+  //Android Annotations
+ // kapt "org.androidannotations:androidannotations:$AA_version"
+  //compile "org.androidannotations:androidannotations-api:$AA_version"
 
   //RXJAVA
   compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
@@ -132,7 +141,7 @@ dependencies {
   compile "com.squareup.okhttp3:okhttp:$okhttp_version"
 
   //LOGANSQUARE
-  annotationProcessor "com.bluelinelabs:logansquare-compiler:$logan_square_version"
+  kapt "com.bluelinelabs:logansquare-compiler:$logan_square_version"
   compile "com.bluelinelabs:logansquare:$logan_square_version"
   compile "com.github.aurae.retrofit2:converter-logansquare:$logansquare_converter_version"
 
@@ -142,10 +151,6 @@ dependencies {
   //JODA TIME
   compile "net.danlew:android.joda:$jodatime_version"
 
-
-  //Android Annotations
-  annotationProcessor "org.androidannotations:androidannotations:$AA_version"
-  compile "org.androidannotations:androidannotations-api:$AA_version"
 
   //Fresco
   compile 'com.facebook.fresco:fresco:1.1.0'
