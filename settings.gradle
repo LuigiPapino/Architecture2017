@@ -1,1 +1,1 @@
-include ':app', ':first_module'
+include ':app', ':figamock'

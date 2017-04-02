@@ -10,7 +10,7 @@ ext {
   default_version_code = 1
 
   //DEPENDENCIES
-  android_support_version = "25.2.0"
+  android_support_version = "25.3.1"
   android_constraint_layout = "1.0.1"
   play_services_version = "10.2.0"
   dagger_version = '2.10-rc4'
@@ -25,8 +25,8 @@ ext {
   okhttp_version = '3.6.0'
   calligraphy_version = "2.2.0"
   jodatime_version = "2.9.4.1"
-  butterknife_version = '8.5.1';
-  AA_version = "4.2.0"
+  butterknife_version = '8.5.1'
+  AA_version = "4.3.0"
 
   //TEST DEPENDENCIES
   espresso_version = "2.2.2"

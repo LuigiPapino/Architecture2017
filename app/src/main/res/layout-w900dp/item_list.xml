@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.spranga.architecture2017.ItemListActivity"
+    tools:context="com.spranga.architecture2017.ui.ItemListActivity"
     >
 
   <!--
@@ -27,7 +27,7 @@
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       app:layoutManager="LinearLayoutManager"
-      tools:context="com.spranga.architecture2017.ItemListActivity"
+      tools:context="com.spranga.architecture2017.ui.ItemListActivity"
       tools:listitem="@layout/item_list_content"
       />
 
