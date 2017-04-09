@@ -1,6 +1,7 @@
 package com.spranga.architecture2017.di
 
 import android.app.Application
+import com.annimon.stream.function.Consumer
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.frogermcs.androiddevmetrics.AndroidDevMetrics
@@ -9,7 +10,6 @@ import com.squareup.leakcanary.LeakCanary
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import io.reactivex.functions.Consumer
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 
